@@ -28,7 +28,7 @@ corr <- function (directory, threshold= 0){
     # Remove NAs
     fileData <-na.omit(fileData)
     
-    # Add rows to vector
+    # Add correlations to vector
     if(nrow(fileData)>threshold){
       correlationVector <- c(correlationVector,cor(fileData[,2],fileData[,3])) 
     }
