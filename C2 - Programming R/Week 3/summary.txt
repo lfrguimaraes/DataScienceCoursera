@@ -1,0 +1,12 @@
+lapply: loop over a list and evaluate a function over each element
+sapply: same (if a simple list, returns a vector)
+apply: apply a function over the margins of an array
+tapply: apply a function over subsets of a vector
+mapply: multivariate version of lapply
+
+debugging
+
+message
+warning
+error
+condition
