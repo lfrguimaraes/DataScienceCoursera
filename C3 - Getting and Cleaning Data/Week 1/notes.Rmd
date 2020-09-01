@@ -1,0 +1,80 @@
+---
+title: "WEEK 1"
+output: html_notebook
+---
+
+# 1. SUMMARY 
+Data Collection
+
+- Raw files
+- Databases
+- APIs
+
+Data formats
+
+- Flat files
+- XML
+- JSON
+
+Making data tidy (principles and how to)
+Distributing data
+Scripting for data cleaning
+
+RAW DATA > Processing script > TIDY DATA > data analysis > data communication
+
+# 2. RAW DATA
+
+Data are values of qualitative or quantitative variables, belonging to a set of items.
+
+Data is raw when:
+
+- No software ran on data
+- No manipulation on data
+- No data removed
+- No data summarized
+
+Qualitative: Country, sex, treatment
+Quantitative: Height, Weight, blood pressure
+
+Raw data
+
+- Original source of data
+- Difficult to use
+
+Processed Data
+
+- Ready for analysis
+- Standards for processing
+
+# 3. TIDY DATA
+
+What you need?
+
+- The raw data
+- A tidy data set
+- Code book describing each variable and its values in the tidy data set
+- An explicit and exact recipe you used to go from 1 -> 2,3
+
+Data is tidy when:
+
+- Each variable you measure should be in one column
+- Each observation os variable should be in a different row
+- The should be one table for each kind of variable
+- Links between tables on columns (keys)
+
+Reccomendations:
+
+- One file per table
+- First row with variable names
+- Variable names readable
+
+# 3.1 CODE BOOK
+
+- Information about variables (code book)
+- Information about summary choices made
+- Information about experimental study design (how you collected data)
+- Normally word/text file
+
+# 3.2 INSTRUCTION LIST
+
+
