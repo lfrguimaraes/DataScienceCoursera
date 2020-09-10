@@ -77,4 +77,30 @@ Reccomendations:
 
 # 3.2 INSTRUCTION LIST
 
+# Dowloading and reading Data
+- dir.create("createdDir")
+- download.file(fileUrl, destfile = "./createdDir/covidFr.csv", method = "curl")
+- fileUrl <- "https://static.data.gouv.fr/resources/donnees-hospitalieres-relatives-a-lepidemie-de-covid-19/20200908-190017/donnees-hospitalieres-covid19-2020-09-08-19h00.csv"
+- read.table("./createdDir/covidFr.csv", sep =";", header = TRUE)
+- res <- DT[, .(count = .N), by = VAL]
+
+# Dowloading and reading Data (MySQL)
+
+- ucscDb <- dbConnect(MySQL(),user="genome",host="genome-mysql.cse.ucsc.edu")
+- result <- dbGetQuery(ucscDb, "show databases;");
+- hg19 <- dbConnect(MySQL(),user="genome", db="hg19", host="genome-mysql.cse.ucsc.edu")
+- dbGetQuery(hg19, "select count(*) from affyU133Plus2")
+- affyData <- dbReadTable(hg19, "affyU133Plus2")
+
+- query <- dbSendQuery(hg19, "select * from affyU133Plus2 where misMatches between 1 and 3")
+- affyMis <- fetch(query)
+
+# HTML
+
+- con = url()
+- htmlCodes = readLines(con)
+- close(con)
+
+
+
 
