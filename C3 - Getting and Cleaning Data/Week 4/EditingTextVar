@@ -1,0 +1,8 @@
+mydata <- c("teste", "teste.2", "teste3")
+mydata <- strsplit(mydata, "\\.")
+firstElement <- function(x){x[1]}
+results <- sapply(mydata , firstElement)
+print(results)
+           
+           
+           
