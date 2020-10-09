@@ -23,4 +23,27 @@ grep("fer",mydata)
 grepl("fer",mydata)
 mydata3 <- mydata[grepl("fer",mydata)]
 print(mydata3)
-           
+
+# Regular expressions I
+^ - start of line
+$ - end of line
+[Bb][Uu][Ss][Hs] - looks for any bush word
+^[Ii] am - looks for "I am" or "i am"
+^[0-9][a-zA-Z] - any line that starts with number followed by character
+[^?.]$ - not ending by ? or .
+
+
+# Regular expressions II
+9.11 - looks for any caracter between 9 and 11
+flood|fire - looks for both flood and fire
+^([Gg]ood|[Bb]ad])
+[Gg]eorge ([Ww]\.)? [Bb]ush - looks for any george bush with w in the middle or not (the \ is necessary because . is a special character)
+(.*) - any character repeated
+
+
+
+
+
+
+
+
