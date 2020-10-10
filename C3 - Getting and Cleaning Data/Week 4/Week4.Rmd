@@ -1,10 +1,22 @@
+---
+title: "Week 3 - Notes"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+  html_notebook: default
+---
+
 # STRSPLIT
+```{r}
 mydata <- c("teste", "teste.2", "teste3")
 mydata <- strsplit(mydata, "\\.")
 firstElement <- function(x){x[1]}
 results <- sapply(mydata , firstElement)
 print(results)
+```
 
+```{r}
 # GSUB
 mydata <- c("teste", "teste.2", "teste3")          
 mydata2 <- c("1,2", "1,3", "1,4")
@@ -13,18 +25,24 @@ print(mydata)
 
 mydata[,2] <- gsub(",",".",mydata[,2])
 print(mydata)
+```
 
+```{r}
 # GREP
 mydata <- c("luiz", "fernando", "luizfernando")  
 grep("fer",mydata)
 
+```
 
+```{r}
 # GREPL
 grepl("fer",mydata)
 mydata3 <- mydata[grepl("fer",mydata)]
 print(mydata3)
+```
 
 # Regular expressions I
+
 ^ - start of line
 $ - end of line
 [Bb][Uu][Ss][Hs] - looks for any bush word
@@ -32,16 +50,13 @@ $ - end of line
 ^[0-9][a-zA-Z] - any line that starts with number followed by character
 [^?.]$ - not ending by ? or .
 
-
 # Regular expressions II
+
 9.11 - looks for any caracter between 9 and 11
 flood|fire - looks for both flood and fire
 ^([Gg]ood|[Bb]ad])
 [Gg]eorge ([Ww]\.)? [Bb]ush - looks for any george bush with w in the middle or not (the \ is necessary because . is a special character)
 (.*) - any character repeated
-
-
-
 
 
 
