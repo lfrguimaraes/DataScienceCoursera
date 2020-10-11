@@ -1760,40 +1760,75 @@ firstElement &lt;- function(x){x[1]}
 results &lt;- sapply(mydata , firstElement)
 print(results)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwidGVzdGVcIiAgXCJ0ZXN0ZVwiICBcInRlc3RlM1wiXG4ifQ== -->
+<pre><code>[1] &quot;teste&quot;  &quot;teste&quot;  &quot;teste3&quot;</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+</div>
+<div id="gsub" class="section level1">
+<h1>GSUB</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBHU1VCXG5teWRhdGEgPC0gYyhcInRlc3RlXCIsIFwidGVzdGUuMlwiLCBcInRlc3RlM1wiKSAgICAgICAgICBcbm15ZGF0YTIgPC0gYyhcIjEsMlwiLCBcIjEsM1wiLCBcIjEsNFwiKVxubXlkYXRhPC1jYmluZChteWRhdGEsbXlkYXRhMilcbnByaW50KG15ZGF0YSlcblxubXlkYXRhWywyXSA8LSBnc3ViKFwiLFwiLFwiLlwiLG15ZGF0YVssMl0pXG5wcmludChteWRhdGEpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBHU1VCXG5teWRhdGEgPC0gYyhcInRlc3RlXCIsIFwidGVzdGUuMlwiLCBcInRlc3RlM1wiKSAgICAgICAgICBcbm15ZGF0YTIgPC0gYyhcIjEsMlwiLCBcIjEsM1wiLCBcIjEsNFwiKVxubXlkYXRhPC1jYmluZChteWRhdGEsbXlkYXRhMilcbnByaW50KG15ZGF0YSlcbmBgYCJ9 -->
 <pre class="r"><code># GSUB
 mydata &lt;- c(&quot;teste&quot;, &quot;teste.2&quot;, &quot;teste3&quot;)          
 mydata2 &lt;- c(&quot;1,2&quot;, &quot;1,3&quot;, &quot;1,4&quot;)
 mydata&lt;-cbind(mydata,mydata2)
-print(mydata)
-
-mydata[,2] &lt;- gsub(&quot;,&quot;,&quot;.&quot;,mydata[,2])
 print(mydata)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICBteWRhdGEgICAgbXlkYXRhMlxuWzEsXSBcInRlc3RlXCIgICBcIjEsMlwiICBcblsyLF0gXCJ0ZXN0ZS4yXCIgXCIxLDNcIiAgXG5bMyxdIFwidGVzdGUzXCIgIFwiMSw0XCIgIFxuIn0= -->
+<pre><code>     mydata    mydata2
+[1,] &quot;teste&quot;   &quot;1,2&quot;  
+[2,] &quot;teste.2&quot; &quot;1,3&quot;  
+[3,] &quot;teste3&quot;  &quot;1,4&quot;  </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXlkYXRhWywyXSA8LSBnc3ViKFwiLFwiLFwiLlwiLG15ZGF0YVssMl0pXG5wcmludChteWRhdGEpXG5gYGAifQ== -->
+<pre class="r"><code>mydata[,2] &lt;- gsub(&quot;,&quot;,&quot;.&quot;,mydata[,2])
+print(mydata)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICBteWRhdGEgICAgbXlkYXRhMlxuWzEsXSBcInRlc3RlXCIgICBcIjEuMlwiICBcblsyLF0gXCJ0ZXN0ZS4yXCIgXCIxLjNcIiAgXG5bMyxdIFwidGVzdGUzXCIgIFwiMS40XCIgIFxuIn0= -->
+<pre><code>     mydata    mydata2
+[1,] &quot;teste&quot;   &quot;1.2&quot;  
+[2,] &quot;teste.2&quot; &quot;1.3&quot;  
+[3,] &quot;teste3&quot;  &quot;1.4&quot;  </code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+</div>
+<div id="grep" class="section level1">
+<h1>GREP</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBHUkVQXG5teWRhdGEgPC0gYyhcImx1aXpcIiwgXCJmZXJuYW5kb1wiLCBcImx1aXpmZXJuYW5kb1wiKSAgXG5ncmVwKFwiZmVyXCIsbXlkYXRhKVxuXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBHUkVQXG5teWRhdGEgPC0gYyhcImx1aXpcIiwgXCJmZXJuYW5kb1wiLCBcImx1aXpmZXJuYW5kb1wiKSAgXG5ncmVwKFwiZmVyXCIsbXlkYXRhKVxuYGBgIn0= -->
 <pre class="r"><code># GREP
 mydata &lt;- c(&quot;luiz&quot;, &quot;fernando&quot;, &quot;luizfernando&quot;)  
-grep(&quot;fer&quot;,mydata)
-</code></pre>
+grep(&quot;fer&quot;,mydata)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDIgM1xuIn0= -->
+<pre><code>[1] 2 3</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+</div>
+<div id="grepl" class="section level1">
+<h1>GREPL</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBHUkVQTFxuZ3JlcGwoXCJmZXJcIixteWRhdGEpXG5teWRhdGEzIDwtIG15ZGF0YVtncmVwbChcImZlclwiLG15ZGF0YSldXG5wcmludChteWRhdGEzKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBHUkVQTFxuZ3JlcGwoXCJmZXJcIixteWRhdGEpXG5gYGAifQ== -->
 <pre class="r"><code># GREPL
-grepl(&quot;fer&quot;,mydata)
-mydata3 &lt;- mydata[grepl(&quot;fer&quot;,mydata)]
+grepl(&quot;fer&quot;,mydata)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIEZBTFNFICBUUlVFICBUUlVFXG4ifQ== -->
+<pre><code>[1] FALSE  TRUE  TRUE</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXlkYXRhMyA8LSBteWRhdGFbZ3JlcGwoXCJmZXJcIixteWRhdGEpXVxucHJpbnQobXlkYXRhMylcbmBgYCJ9 -->
+<pre class="r"><code>mydata3 &lt;- mydata[grepl(&quot;fer&quot;,mydata)]
 print(mydata3)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiZmVybmFuZG9cIiAgICAgXCJsdWl6ZmVybmFuZG9cIlxuIn0= -->
+<pre><code>[1] &quot;fernando&quot;     &quot;luizfernando&quot;</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -1803,7 +1838,52 @@ print(mydata3)</code></pre>
 </div>
 <div id="regular-expressions-ii" class="section level1">
 <h1>Regular expressions II</h1>
-<p>9.11 - looks for any caracter between 9 and 11 flood|fire - looks for both flood and fire ^([Gg]ood|[Bb]ad]) [Gg]eorge ([Ww].)? [Bb]ush - looks for any george bush with w in the middle or not (the  is necessary because . is a special character) (.*) - any character repeated</p>
+<p>9.11 - looks for any caracter between 9 and 11 ( “.” means any character) flood|fire - looks for both flood and fire ^([Gg]ood|[Bb]ad]) [Gg]eorge ([Ww].)? [Bb]ush - looks for any george bush with w in the middle or not (the  is necessary because . is a special character) (.<em>) - any character repeated [0-9]+ (.</em>)[0-9]+ - at least one number followed by any number of characters followed by any number again [Bb]ush( +[^ ]+ +){1,5} debate - bush and at the end debate. in the middle at least one space followed by somehting that is not space repeated 1 to 5 times</p>
+<p>+([a-zA-Z]+) +\1 +</p>
+<p>^s(.*)s - starts with s and ends with s</p>
+</div>
+<div id="date-class" class="section level1">
+<h1>Date class</h1>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZDIgPC0gU3lzLkRhdGUoKVxuZDJcbmBgYCJ9 -->
+<pre class="r"><code>d2 &lt;- Sys.Date()
+d2</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiMjAyMC0xMC0xMVwiXG4ifQ== -->
+<pre><code>[1] &quot;2020-10-11&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZm9ybWF0KGQyLCBcIiVhICViICVkXCIpXG5gYGAifQ== -->
+<pre class="r"><code>format(d2, &quot;%a %b %d&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiRGltIG9jdCAxMVwiXG4ifQ== -->
+<pre><code>[1] &quot;Dim oct 11&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZm9ybWF0KGQyLCBcIiVBICViICVkXCIpXG5gYGAifQ== -->
+<pre class="r"><code>format(d2, &quot;%A %b %d&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiRGltYW5jaGUgb2N0IDExXCJcbiJ9 -->
+<pre><code>[1] &quot;Dimanche oct 11&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG54IDwtIGMoXCIxamFuMTk2MFwiLCBcIjJqYW4xOTgwXCIsIFwiM2p1bDE5ODBcIilcbnogPC0gYXMuRGF0ZSh4LCBcIiVkJWIlWVwiKVxuelxuYGBgIn0= -->
+<pre class="r"><code>
+x &lt;- c(&quot;1jan1960&quot;, &quot;2jan1980&quot;, &quot;3jul1980&quot;)
+z &lt;- as.Date(x, &quot;%d%b%Y&quot;)
+z</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiMTk2MC0wMS0wMVwiIFwiMTk4MC0wMS0wMlwiIFwiMTk4MC0wNy0wM1wiXG4ifQ== -->
+<pre><code>[1] &quot;1960-01-01&quot; &quot;1980-01-02&quot; &quot;1980-07-03&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 <div class="footnotes">
@@ -1814,7 +1894,7 @@ print(mydata3)</code></pre>
 </ol>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiV2VlayAzIC0gTm90ZXMiCm91dHB1dDoKICBwZGZfZG9jdW1lbnQ6IGRlZmF1bHQKICBodG1sX2RvY3VtZW50OgogICAgZGZfcHJpbnQ6IHBhZ2VkCiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdAotLS0KCiMgU1RSU1BMSVQKYGBge3J9Cm15ZGF0YSA8LSBjKCJ0ZXN0ZSIsICJ0ZXN0ZS4yIiwgInRlc3RlMyIpCm15ZGF0YSA8LSBzdHJzcGxpdChteWRhdGEsICJcXC4iKQpmaXJzdEVsZW1lbnQgPC0gZnVuY3Rpb24oeCl7eFsxXX0KcmVzdWx0cyA8LSBzYXBwbHkobXlkYXRhICwgZmlyc3RFbGVtZW50KQpwcmludChyZXN1bHRzKQpgYGAKCmBgYHtyfQojIEdTVUIKbXlkYXRhIDwtIGMoInRlc3RlIiwgInRlc3RlLjIiLCAidGVzdGUzIikgICAgICAgICAgCm15ZGF0YTIgPC0gYygiMSwyIiwgIjEsMyIsICIxLDQiKQpteWRhdGE8LWNiaW5kKG15ZGF0YSxteWRhdGEyKQpwcmludChteWRhdGEpCgpteWRhdGFbLDJdIDwtIGdzdWIoIiwiLCIuIixteWRhdGFbLDJdKQpwcmludChteWRhdGEpCmBgYAoKYGBge3J9CiMgR1JFUApteWRhdGEgPC0gYygibHVpeiIsICJmZXJuYW5kbyIsICJsdWl6ZmVybmFuZG8iKSAgCmdyZXAoImZlciIsbXlkYXRhKQoKYGBgCgpgYGB7cn0KIyBHUkVQTApncmVwbCgiZmVyIixteWRhdGEpCm15ZGF0YTMgPC0gbXlkYXRhW2dyZXBsKCJmZXIiLG15ZGF0YSldCnByaW50KG15ZGF0YTMpCmBgYAoKIyBSZWd1bGFyIGV4cHJlc3Npb25zIEkKCl4gLSBzdGFydCBvZiBsaW5lCiQgLSBlbmQgb2YgbGluZQpbQmJdW1V1XVtTc11bSHNdIC0gbG9va3MgZm9yIGFueSBidXNoIHdvcmQKXltJaV0gYW0gLSBsb29rcyBmb3IgIkkgYW0iIG9yICJpIGFtIgpeWzAtOV1bYS16QS1aXSAtIGFueSBsaW5lIHRoYXQgc3RhcnRzIHdpdGggbnVtYmVyIGZvbGxvd2VkIGJ5IGNoYXJhY3RlcgpbXj8uXSQgLSBub3QgZW5kaW5nIGJ5ID8gb3IgLgoKIyBSZWd1bGFyIGV4cHJlc3Npb25zIElJCgo5LjExIC0gbG9va3MgZm9yIGFueSBjYXJhY3RlciBiZXR3ZWVuIDkgYW5kIDExCmZsb29kfGZpcmUgLSBsb29rcyBmb3IgYm90aCBmbG9vZCBhbmQgZmlyZQpeKFtHZ11vb2R8W0JiXWFkXSkKW0dnXWVvcmdlIChbV3ddXC4pPyBbQmJddXNoIC0gbG9va3MgZm9yIGFueSBnZW9yZ2UgYnVzaCB3aXRoIHcgaW4gdGhlIG1pZGRsZSBvciBub3QgKHRoZSBcIGlzIG5lY2Vzc2FyeSBiZWNhdXNlIC4gaXMgYSBzcGVjaWFsIGNoYXJhY3RlcikKKC4qKSAtIGFueSBjaGFyYWN0ZXIgcmVwZWF0ZWQKCgoKCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiV2VlayAzIC0gTm90ZXMiCm91dHB1dDoKICBwZGZfZG9jdW1lbnQ6IGRlZmF1bHQKICBodG1sX2RvY3VtZW50OgogICAgZGZfcHJpbnQ6IHBhZ2VkCiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdAotLS0KCiMgU1RSU1BMSVQKYGBge3J9Cm15ZGF0YSA8LSBjKCJ0ZXN0ZSIsICJ0ZXN0ZS4yIiwgInRlc3RlMyIpCm15ZGF0YSA8LSBzdHJzcGxpdChteWRhdGEsICJcXC4iKQpmaXJzdEVsZW1lbnQgPC0gZnVuY3Rpb24oeCl7eFsxXX0KcmVzdWx0cyA8LSBzYXBwbHkobXlkYXRhICwgZmlyc3RFbGVtZW50KQpwcmludChyZXN1bHRzKQpgYGAKCiMgR1NVQgpgYGB7cn0KbXlkYXRhIDwtIGMoInRlc3RlIiwgInRlc3RlLjIiLCAidGVzdGUzIikgICAgICAgICAgCm15ZGF0YTIgPC0gYygiMSwyIiwgIjEsMyIsICIxLDQiKQpteWRhdGE8LWNiaW5kKG15ZGF0YSxteWRhdGEyKQpwcmludChteWRhdGEpCgpteWRhdGFbLDJdIDwtIGdzdWIoIiwiLCIuIixteWRhdGFbLDJdKQpwcmludChteWRhdGEpCmBgYAoKIyBHUkVQCmBgYHtyfQpteWRhdGEgPC0gYygibHVpeiIsICJmZXJuYW5kbyIsICJsdWl6ZmVybmFuZG8iKSAgCmdyZXAoImZlciIsbXlkYXRhKQoKYGBgCgojIEdSRVBMCmBgYHtyfQpncmVwbCgiZmVyIixteWRhdGEpCm15ZGF0YTMgPC0gbXlkYXRhW2dyZXBsKCJmZXIiLG15ZGF0YSldCnByaW50KG15ZGF0YTMpCmBgYAoKIyBSZWd1bGFyIGV4cHJlc3Npb25zIEkKCl4gLSBzdGFydCBvZiBsaW5lCiQgLSBlbmQgb2YgbGluZQpbQmJdW1V1XVtTc11bSHNdIC0gbG9va3MgZm9yIGFueSBidXNoIHdvcmQKXltJaV0gYW0gLSBsb29rcyBmb3IgIkkgYW0iIG9yICJpIGFtIgpeWzAtOV1bYS16QS1aXSAtIGFueSBsaW5lIHRoYXQgc3RhcnRzIHdpdGggbnVtYmVyIGZvbGxvd2VkIGJ5IGNoYXJhY3RlcgpbXj8uXSQgLSBub3QgZW5kaW5nIGJ5ID8gb3IgLgoKIyBSZWd1bGFyIGV4cHJlc3Npb25zIElJCgo5LjExIC0gbG9va3MgZm9yIGFueSBjYXJhY3RlciBiZXR3ZWVuIDkgYW5kIDExICggIi4iIG1lYW5zIGFueSBjaGFyYWN0ZXIpCmZsb29kfGZpcmUgLSBsb29rcyBmb3IgYm90aCBmbG9vZCBhbmQgZmlyZQpeKFtHZ11vb2R8W0JiXWFkXSkKW0dnXWVvcmdlIChbV3ddXC4pPyBbQmJddXNoIC0gbG9va3MgZm9yIGFueSBnZW9yZ2UgYnVzaCB3aXRoIHcgaW4gdGhlIG1pZGRsZSBvciBub3QgKHRoZSBcIGlzIG5lY2Vzc2FyeSBiZWNhdXNlIC4gaXMgYSBzcGVjaWFsIGNoYXJhY3RlcikKKC4qKSAtIGFueSBjaGFyYWN0ZXIgcmVwZWF0ZWQKWzAtOV0rICguKilbMC05XSsgIC0gYXQgbGVhc3Qgb25lIG51bWJlciBmb2xsb3dlZCBieSBhbnkgbnVtYmVyIG9mIGNoYXJhY3RlcnMgZm9sbG93ZWQgYnkgYW55IG51bWJlciBhZ2FpbgpbQmJddXNoKCArW14gXSsgKyl7MSw1fSBkZWJhdGUgLSBidXNoICBhbmQgYXQgdGhlIGVuZCBkZWJhdGUuIGluIHRoZSBtaWRkbGUgYXQgbGVhc3Qgb25lIHNwYWNlIGZvbGxvd2VkIGJ5IHNvbWVodGluZyB0aGF0IGlzIG5vdCBzcGFjZSByZXBlYXRlZCAxIHRvIDUgdGltZXMKCiArKFthLXpBLVpdKykgK1wxICsKIApecyguKilzIC0gc3RhcnRzIHdpdGggcyBhbmQgZW5kcyB3aXRoIHMKCiMgRGF0ZSBjbGFzcwoKYGBge3J9CmQyIDwtIFN5cy5EYXRlKCkKZDIKYGBgCgpgYGB7cn0KZm9ybWF0KGQyLCAiJWEgJWIgJWQiKQpmb3JtYXQoZDIsICIlQSAlYiAlZCIpCmBgYAoKYGBge3J9Cgp4IDwtIGMoIjFqYW4xOTYwIiwgIjJqYW4xOTgwIiwgIjNqdWwxOTgwIikKeiA8LSBhcy5EYXRlKHgsICIlZCViJVkiKQp6CmBgYAoKCgoKCgoK</div>
 
 
 
