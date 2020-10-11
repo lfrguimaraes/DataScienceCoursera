@@ -1,5 +1,6 @@
 # Load libraries
 library(dplyr)
+library(plyr)
 
 # Load and unzip file
 
@@ -52,15 +53,16 @@ names(dataMeanStd)<-gsub("Mag", "Magnitude", names(dataMeanStd))
 
 # t to Time
 names(dataMeanStd)<-gsub("^t", "Time", names(dataMeanStd))
+names(dataMeanStd)<-gsub("\\.t", "Time", names(dataMeanStd))
 
 # f to Frequency
 names(dataMeanStd)<-gsub("^f", "Frequency", names(dataMeanStd))
 
 # -mean to Mean
-names(dataMeanStd)<-gsub("-mean()-", "Mean", names(dataMeanStd))
+names(dataMeanStd)<-gsub(".mean()", "Mean", names(dataMeanStd))
 
 # -std to Std
-names(dataMeanStd)<-gsub("-std()-", "Std", names(dataMeanStd))
+names(dataMeanStd)<-gsub(".std()", "Std", names(dataMeanStd))
 
 # id to Activity
 names(dataMeanStd)<-gsub("^id$", "Activity", names(dataMeanStd))
@@ -68,8 +70,19 @@ names(dataMeanStd)<-gsub("^id$", "Activity", names(dataMeanStd))
 # id_subject to Subject
 names(dataMeanStd)<-gsub("^id_subject$", "Subject", names(dataMeanStd))
 
+# angle to Angle
+names(dataMeanStd)<-gsub("angle", "Angle", names(dataMeanStd))
 
+# BodyBody to Body
+names(dataMeanStd)<-gsub("BodyBody", "Body", names(dataMeanStd))
 
+# Remove Dots
+names(dataMeanStd)<-gsub("\\.", "", names(dataMeanStd))
 
+# gravity to Gravity
+names(dataMeanStd)<-gsub("gravity", "Gravity", names(dataMeanStd))
 
-
+# Assingment 5: From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subjec
+dataMergedAverage<-aggregate(. ~Subject + Activity, dataMeanStd, mean)
+dataMergedAverage<-dataMergedAverage[order(dataMergedAverage$Subject,dataMergedAverage$Activity),]
+write.table(dataMergedAverage, "./data/finalAverageData.txt", row.name=FALSE)
