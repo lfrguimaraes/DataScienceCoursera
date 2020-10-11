@@ -43,7 +43,7 @@ library(dplyr)
 ```
 
 ## Load and unzip file
-
+* Loads data from url and unzips into folder /data/UCI HAR Dataset
 
 
 ```r
@@ -195,7 +195,7 @@ names(dataMeanStd)<-gsub("gravity", "Gravity", names(dataMeanStd))
 
 ## Assingment 5: From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject
 
-* Writes a file named finalAverageData.txt with independent tidy data set with the average of each variable for each activity and each subject
+* Writes a file named /data/finalAverageData.txt with independent tidy data set with the average of each variable for each activity and each subject
 
 
 ```r
