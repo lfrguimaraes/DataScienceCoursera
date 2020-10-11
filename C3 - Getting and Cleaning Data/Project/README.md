@@ -1,7 +1,9 @@
 ---
 title: "Code Book"
 output:
-  html_document: default
+  html_document: 
+    keep_md: yes
+  md_document: default
   pdf_document: default
 ---
 
@@ -34,35 +36,38 @@ You should create one R script called run_analysis.R that does the following.
 
 
 
-```{r message=FALSE, warning=FALSE}
-library(dplyr)
+
+```r
 library(plyr)
+library(dplyr)
 ```
 
 ## Load and unzip file
 
 
-```{r}
-url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+
+```r
+url<-"https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 if(!file.exists("./data")) dir.create("./data")
 if(!file.exists("./data/Week4-Project-Data.zip")) download.file(url, destfile="./data/Week4-Project-Data.zip", method="curl")
-if(!file.exists("./data/UCI HAR Dataset")) unzip(zipfile = "./data/Week4-Project-Data.zip", exdir = "./data")
+if(!file.exists("./data/UCI HAR Dataset")) unzip(zipfile="./data/Week4-Project-Data.zip", exdir="./data")
 ```
 
 ## Extract data frames
 
-```{r}
-feature <- read.table("./data/UCI HAR Dataset/features.txt", col.names = c("id_feature","obs"))
-activity <- read.table("./data/UCI HAR Dataset/activity_labels.txt", col.names = c("id_activity", "activity"))
 
-testX <- read.table("./data/UCI HAR Dataset/test/X_test.txt", col.names = feature$obs)
-testY<- read.table("./data/UCI HAR Dataset/test/y_test.txt", col.names = "id")
+```r
+feature<-read.table("./data/UCI HAR Dataset/features.txt", col.names=c("id_feature","obs"))
+activity<-read.table("./data/UCI HAR Dataset/activity_labels.txt", col.names=c("id_activity", "activity"))
 
-trainX <- read.table("./data/UCI HAR Dataset/train/X_train.txt", col.names = feature$obs)
-trainY <- read.table("./data/UCI HAR Dataset/train/y_train.txt", col.names = "id")
+testX<-read.table("./data/UCI HAR Dataset/test/X_test.txt", col.names=feature$obs)
+testY<- read.table("./data/UCI HAR Dataset/test/y_test.txt", col.names="id")
 
-testSubject <- read.table("./data/UCI HAR Dataset/test/subject_test.txt", col.names = "id_subject")
-trainSubject <- read.table("./data/UCI HAR Dataset/train/subject_train.txt", col.names = "id_subject")
+trainX<-read.table("./data/UCI HAR Dataset/train/X_train.txt", col.names=feature$obs)
+trainY<-read.table("./data/UCI HAR Dataset/train/y_train.txt", col.names="id")
+
+testSubject<-read.table("./data/UCI HAR Dataset/test/subject_test.txt", col.names="id_subject")
+trainSubject<-read.table("./data/UCI HAR Dataset/train/subject_train.txt", col.names="id_subject")
 ```
 
 
@@ -70,107 +75,125 @@ trainSubject <- read.table("./data/UCI HAR Dataset/train/subject_train.txt", col
 
 ## Merge test and train data frames
 
-```{r}
-dataX <- rbind(testX, trainX)
-dataY <- rbind(testY, trainY)
-dataSubject <- rbind(testSubject, trainSubject)
+
+```r
+dataX<-rbind(testX, trainX)
+dataY<-rbind(testY, trainY)
+dataSubject<-rbind(testSubject, trainSubject)
 ```
 
 
 
 
 ## Assignment 1: Merges test and train sets to subject identification to create one tidy data set
-```{r}
-dataMerged <- cbind(dataX, dataY, dataSubject)
+
+```r
+dataMerged<-cbind(dataX, dataY, dataSubject)
 ```
 
 
 
 ## Assignment 2: Extracts only the measurements on the mean and standard deviation for each measurement
-```{r}
-dataMeanStd <- select(dataMerged, id_subject, id, contains("mean"), contains("std"))
+
+```r
+dataMeanStd<-select(dataMerged, id_subject, id, contains("mean"), contains("std"))
 ```
 
 
 ## Assingment 3: Uses descriptive activity names to name the activities in the data set
-```{r}
-dataMeanStd$id <- activity[dataMeanStd$id, 2]
+
+```r
+dataMeanStd$id<-activity[dataMeanStd$id, 2]
 ```
 
 
 
 ## Assingment 4: Appropriately labels the data set with descriptive variable names
 
-#### 4.1 Acc to Accelerometer
-```{r}
+* Acc to Accelerometer
+
+```r
 names(dataMeanStd)<-gsub("Acc", "Accelerometer", names(dataMeanStd))
 ```
 
-#### 4.2 Gyro to Gyroscope
-```{r}
+* Gyro to Gyroscope
+
+```r
 names(dataMeanStd)<-gsub("Gyro", "Gyroscope", names(dataMeanStd))
 ```
 
-#### 4.3 Mag to Magnitude
-```{r}
+* Mag to Magnitude
+
+```r
 names(dataMeanStd)<-gsub("Mag", "Magnitude", names(dataMeanStd))
 ```
 
-#### 4.4 t to Time
-```{r}
+* t to Time
+
+```r
 names(dataMeanStd)<-gsub("^t", "Time", names(dataMeanStd))
 names(dataMeanStd)<-gsub("\\.t", "Time", names(dataMeanStd))
 ```
 
-#### 4.5 f to Frequency
-```{r}
+* f to Frequency
+
+```r
 names(dataMeanStd)<-gsub("^f", "Frequency", names(dataMeanStd))
 ```
 
-#### 4.6 mean to Mean
-```{r}
+* mean to Mean
+
+```r
 names(dataMeanStd)<-gsub(".mean()", "Mean", names(dataMeanStd))
 ```
 
-#### 4.7 std to Std
-```{r}
+* std to Std
+
+```r
 names(dataMeanStd)<-gsub(".std()", "Std", names(dataMeanStd))
 ```
 
-#### 4.8 id to Activity
-```{r}
+* id to Activity
+
+```r
 names(dataMeanStd)<-gsub("^id$", "Activity", names(dataMeanStd))
 ```
 
-#### 4.9 id_subject to Subject
-```{r}
+* id_subject to Subject
+
+```r
 names(dataMeanStd)<-gsub("^id_subject$", "Subject", names(dataMeanStd))
 ```
 
-#### 4.10 angle to Angle
-```{r}
+* angle to Angle
+
+```r
 names(dataMeanStd)<-gsub("angle", "Angle", names(dataMeanStd))
 ```
 
-#### 4.11 BodyBody to Body
-```{r}
+* BodyBody to Body
+
+```r
 names(dataMeanStd)<-gsub("BodyBody", "Body", names(dataMeanStd))
 ```
 
-#### 4.12 Remove Dots
-```{r}
+* Remove Dots
+
+```r
 names(dataMeanStd)<-gsub("\\.", "", names(dataMeanStd))
 ```
 
 
-#### 4.13 gravity to Gravity
-```{r}
+* gravity to Gravity
+
+```r
 names(dataMeanStd)<-gsub("gravity", "Gravity", names(dataMeanStd))
 ```
 
 
 ## Assingment 5: From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject
-```{r}
+
+```r
 dataMergedAverage<-aggregate(. ~Subject + Activity, dataMeanStd, mean)
 dataMergedAverage<-dataMergedAverage[order(dataMergedAverage$Subject,dataMergedAverage$Activity),]
 write.table(dataMergedAverage, "./data/finalAverageData.txt", row.name=FALSE)

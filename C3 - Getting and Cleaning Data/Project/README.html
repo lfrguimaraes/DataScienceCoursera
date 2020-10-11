@@ -389,103 +389,103 @@ summary {
 <h1>Solution</h1>
 <div id="load-libraries" class="section level2">
 <h2>Load libraries</h2>
-<pre class="r"><code>library(dplyr)
-library(plyr)</code></pre>
+<pre class="r"><code>library(plyr)
+library(dplyr)</code></pre>
 </div>
 <div id="load-and-unzip-file" class="section level2">
 <h2>Load and unzip file</h2>
-<pre class="r"><code>url &lt;- &quot;https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip&quot;
+<pre class="r"><code>url&lt;-&quot;https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip&quot;
 if(!file.exists(&quot;./data&quot;)) dir.create(&quot;./data&quot;)
 if(!file.exists(&quot;./data/Week4-Project-Data.zip&quot;)) download.file(url, destfile=&quot;./data/Week4-Project-Data.zip&quot;, method=&quot;curl&quot;)
-if(!file.exists(&quot;./data/UCI HAR Dataset&quot;)) unzip(zipfile = &quot;./data/Week4-Project-Data.zip&quot;, exdir = &quot;./data&quot;)</code></pre>
+if(!file.exists(&quot;./data/UCI HAR Dataset&quot;)) unzip(zipfile=&quot;./data/Week4-Project-Data.zip&quot;, exdir=&quot;./data&quot;)</code></pre>
 </div>
 <div id="extract-data-frames" class="section level2">
 <h2>Extract data frames</h2>
-<pre class="r"><code>feature &lt;- read.table(&quot;./data/UCI HAR Dataset/features.txt&quot;, col.names = c(&quot;id_feature&quot;,&quot;obs&quot;))
-activity &lt;- read.table(&quot;./data/UCI HAR Dataset/activity_labels.txt&quot;, col.names = c(&quot;id_activity&quot;, &quot;activity&quot;))
+<pre class="r"><code>feature&lt;-read.table(&quot;./data/UCI HAR Dataset/features.txt&quot;, col.names=c(&quot;id_feature&quot;,&quot;obs&quot;))
+activity&lt;-read.table(&quot;./data/UCI HAR Dataset/activity_labels.txt&quot;, col.names=c(&quot;id_activity&quot;, &quot;activity&quot;))
 
-testX &lt;- read.table(&quot;./data/UCI HAR Dataset/test/X_test.txt&quot;, col.names = feature$obs)
-testY&lt;- read.table(&quot;./data/UCI HAR Dataset/test/y_test.txt&quot;, col.names = &quot;id&quot;)
+testX&lt;-read.table(&quot;./data/UCI HAR Dataset/test/X_test.txt&quot;, col.names=feature$obs)
+testY&lt;- read.table(&quot;./data/UCI HAR Dataset/test/y_test.txt&quot;, col.names=&quot;id&quot;)
 
-trainX &lt;- read.table(&quot;./data/UCI HAR Dataset/train/X_train.txt&quot;, col.names = feature$obs)
-trainY &lt;- read.table(&quot;./data/UCI HAR Dataset/train/y_train.txt&quot;, col.names = &quot;id&quot;)
+trainX&lt;-read.table(&quot;./data/UCI HAR Dataset/train/X_train.txt&quot;, col.names=feature$obs)
+trainY&lt;-read.table(&quot;./data/UCI HAR Dataset/train/y_train.txt&quot;, col.names=&quot;id&quot;)
 
-testSubject &lt;- read.table(&quot;./data/UCI HAR Dataset/test/subject_test.txt&quot;, col.names = &quot;id_subject&quot;)
-trainSubject &lt;- read.table(&quot;./data/UCI HAR Dataset/train/subject_train.txt&quot;, col.names = &quot;id_subject&quot;)</code></pre>
+testSubject&lt;-read.table(&quot;./data/UCI HAR Dataset/test/subject_test.txt&quot;, col.names=&quot;id_subject&quot;)
+trainSubject&lt;-read.table(&quot;./data/UCI HAR Dataset/train/subject_train.txt&quot;, col.names=&quot;id_subject&quot;)</code></pre>
 </div>
 <div id="merge-test-and-train-data-frames" class="section level2">
 <h2>Merge test and train data frames</h2>
-<pre class="r"><code>dataX &lt;- rbind(testX, trainX)
-dataY &lt;- rbind(testY, trainY)
-dataSubject &lt;- rbind(testSubject, trainSubject)</code></pre>
+<pre class="r"><code>dataX&lt;-rbind(testX, trainX)
+dataY&lt;-rbind(testY, trainY)
+dataSubject&lt;-rbind(testSubject, trainSubject)</code></pre>
 </div>
 <div id="assignment-1-merges-test-and-train-sets-to-subject-identification-to-create-one-tidy-data-set" class="section level2">
 <h2>Assignment 1: Merges test and train sets to subject identification to create one tidy data set</h2>
-<pre class="r"><code>dataMerged &lt;- cbind(dataX, dataY, dataSubject)</code></pre>
+<pre class="r"><code>dataMerged&lt;-cbind(dataX, dataY, dataSubject)</code></pre>
 </div>
 <div id="assignment-2-extracts-only-the-measurements-on-the-mean-and-standard-deviation-for-each-measurement" class="section level2">
 <h2>Assignment 2: Extracts only the measurements on the mean and standard deviation for each measurement</h2>
-<pre class="r"><code>dataMeanStd &lt;- select(dataMerged, id_subject, id, contains(&quot;mean&quot;), contains(&quot;std&quot;))</code></pre>
+<pre class="r"><code>dataMeanStd&lt;-select(dataMerged, id_subject, id, contains(&quot;mean&quot;), contains(&quot;std&quot;))</code></pre>
 </div>
 <div id="assingment-3-uses-descriptive-activity-names-to-name-the-activities-in-the-data-set" class="section level2">
 <h2>Assingment 3: Uses descriptive activity names to name the activities in the data set</h2>
-<pre class="r"><code>dataMeanStd$id &lt;- activity[dataMeanStd$id, 2]</code></pre>
+<pre class="r"><code>dataMeanStd$id&lt;-activity[dataMeanStd$id, 2]</code></pre>
 </div>
 <div id="assingment-4-appropriately-labels-the-data-set-with-descriptive-variable-names" class="section level2">
 <h2>Assingment 4: Appropriately labels the data set with descriptive variable names</h2>
-<div id="acc-to-accelerometer" class="section level4">
-<h4>4.1 Acc to Accelerometer</h4>
+<ul>
+<li>Acc to Accelerometer</li>
+</ul>
 <pre class="r"><code>names(dataMeanStd)&lt;-gsub(&quot;Acc&quot;, &quot;Accelerometer&quot;, names(dataMeanStd))</code></pre>
-</div>
-<div id="gyro-to-gyroscope" class="section level4">
-<h4>4.2 Gyro to Gyroscope</h4>
+<ul>
+<li>Gyro to Gyroscope</li>
+</ul>
 <pre class="r"><code>names(dataMeanStd)&lt;-gsub(&quot;Gyro&quot;, &quot;Gyroscope&quot;, names(dataMeanStd))</code></pre>
-</div>
-<div id="mag-to-magnitude" class="section level4">
-<h4>4.3 Mag to Magnitude</h4>
+<ul>
+<li>Mag to Magnitude</li>
+</ul>
 <pre class="r"><code>names(dataMeanStd)&lt;-gsub(&quot;Mag&quot;, &quot;Magnitude&quot;, names(dataMeanStd))</code></pre>
-</div>
-<div id="t-to-time" class="section level4">
-<h4>4.4 t to Time</h4>
+<ul>
+<li>t to Time</li>
+</ul>
 <pre class="r"><code>names(dataMeanStd)&lt;-gsub(&quot;^t&quot;, &quot;Time&quot;, names(dataMeanStd))
 names(dataMeanStd)&lt;-gsub(&quot;\\.t&quot;, &quot;Time&quot;, names(dataMeanStd))</code></pre>
-</div>
-<div id="f-to-frequency" class="section level4">
-<h4>4.5 f to Frequency</h4>
+<ul>
+<li>f to Frequency</li>
+</ul>
 <pre class="r"><code>names(dataMeanStd)&lt;-gsub(&quot;^f&quot;, &quot;Frequency&quot;, names(dataMeanStd))</code></pre>
-</div>
-<div id="mean-to-mean" class="section level4">
-<h4>4.6 mean to Mean</h4>
+<ul>
+<li>mean to Mean</li>
+</ul>
 <pre class="r"><code>names(dataMeanStd)&lt;-gsub(&quot;.mean()&quot;, &quot;Mean&quot;, names(dataMeanStd))</code></pre>
-</div>
-<div id="std-to-std" class="section level4">
-<h4>4.7 std to Std</h4>
+<ul>
+<li>std to Std</li>
+</ul>
 <pre class="r"><code>names(dataMeanStd)&lt;-gsub(&quot;.std()&quot;, &quot;Std&quot;, names(dataMeanStd))</code></pre>
-</div>
-<div id="id-to-activity" class="section level4">
-<h4>4.8 id to Activity</h4>
+<ul>
+<li>id to Activity</li>
+</ul>
 <pre class="r"><code>names(dataMeanStd)&lt;-gsub(&quot;^id$&quot;, &quot;Activity&quot;, names(dataMeanStd))</code></pre>
-</div>
-<div id="id_subject-to-subject" class="section level4">
-<h4>4.9 id_subject to Subject</h4>
+<ul>
+<li>id_subject to Subject</li>
+</ul>
 <pre class="r"><code>names(dataMeanStd)&lt;-gsub(&quot;^id_subject$&quot;, &quot;Subject&quot;, names(dataMeanStd))</code></pre>
-</div>
-<div id="angle-to-angle" class="section level4">
-<h4>4.10 angle to Angle</h4>
+<ul>
+<li>angle to Angle</li>
+</ul>
 <pre class="r"><code>names(dataMeanStd)&lt;-gsub(&quot;angle&quot;, &quot;Angle&quot;, names(dataMeanStd))</code></pre>
-</div>
-<div id="bodybody-to-body" class="section level4">
-<h4>4.11 BodyBody to Body</h4>
+<ul>
+<li>BodyBody to Body</li>
+</ul>
 <pre class="r"><code>names(dataMeanStd)&lt;-gsub(&quot;BodyBody&quot;, &quot;Body&quot;, names(dataMeanStd))</code></pre>
-</div>
-<div id="remove-dots" class="section level4">
-<h4>4.12 Remove Dots</h4>
+<ul>
+<li>Remove Dots</li>
+</ul>
 <pre class="r"><code>names(dataMeanStd)&lt;-gsub(&quot;\\.&quot;, &quot;&quot;, names(dataMeanStd))</code></pre>
-</div>
-<div id="gravity-to-gravity" class="section level4">
-<h4>4.13 gravity to Gravity</h4>
+<ul>
+<li>gravity to Gravity</li>
+</ul>
 <pre class="r"><code>names(dataMeanStd)&lt;-gsub(&quot;gravity&quot;, &quot;Gravity&quot;, names(dataMeanStd))</code></pre>
-</div>
 </div>
 <div id="assingment-5-from-the-data-set-in-step-4-creates-a-second-independent-tidy-data-set-with-the-average-of-each-variable-for-each-activity-and-each-subject" class="section level2">
 <h2>Assingment 5: From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject</h2>
