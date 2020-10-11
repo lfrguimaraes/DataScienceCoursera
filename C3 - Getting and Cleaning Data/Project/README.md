@@ -74,7 +74,7 @@ trainSubject<-read.table("./data/UCI HAR Dataset/train/subject_train.txt", col.n
 
 
 ## Merge test and train data frames
-
+* Merges train and test data (X, Y and Subjects)
 
 ```r
 dataX<-rbind(testX, trainX)
@@ -86,6 +86,7 @@ dataSubject<-rbind(testSubject, trainSubject)
 
 
 ## Assignment 1: Merges test and train sets to subject identification to create one tidy data set
+* Merges data into variable named dataMerged
 
 ```r
 dataMerged<-cbind(dataX, dataY, dataSubject)
@@ -94,6 +95,7 @@ dataMerged<-cbind(dataX, dataY, dataSubject)
 
 
 ## Assignment 2: Extracts only the measurements on the mean and standard deviation for each measurement
+* Extracts data into variable named dataMeanStd
 
 ```r
 dataMeanStd<-select(dataMerged, id_subject, id, contains("mean"), contains("std"))
@@ -192,6 +194,9 @@ names(dataMeanStd)<-gsub("gravity", "Gravity", names(dataMeanStd))
 
 
 ## Assingment 5: From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject
+
+* Writes a file named finalAverageData.txt with independent tidy data set with the average of each variable for each activity and each subject
+
 
 ```r
 dataMergedAverage<-aggregate(. ~Subject + Activity, dataMeanStd, mean)

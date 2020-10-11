@@ -415,16 +415,25 @@ trainSubject&lt;-read.table(&quot;./data/UCI HAR Dataset/train/subject_train.txt
 </div>
 <div id="merge-test-and-train-data-frames" class="section level2">
 <h2>Merge test and train data frames</h2>
+<ul>
+<li>Merges train and test data (X, Y and Subjects)</li>
+</ul>
 <pre class="r"><code>dataX&lt;-rbind(testX, trainX)
 dataY&lt;-rbind(testY, trainY)
 dataSubject&lt;-rbind(testSubject, trainSubject)</code></pre>
 </div>
 <div id="assignment-1-merges-test-and-train-sets-to-subject-identification-to-create-one-tidy-data-set" class="section level2">
 <h2>Assignment 1: Merges test and train sets to subject identification to create one tidy data set</h2>
+<ul>
+<li>Merges data into variable named dataMerged</li>
+</ul>
 <pre class="r"><code>dataMerged&lt;-cbind(dataX, dataY, dataSubject)</code></pre>
 </div>
 <div id="assignment-2-extracts-only-the-measurements-on-the-mean-and-standard-deviation-for-each-measurement" class="section level2">
 <h2>Assignment 2: Extracts only the measurements on the mean and standard deviation for each measurement</h2>
+<ul>
+<li>Extracts data into variable named dataMeanStd</li>
+</ul>
 <pre class="r"><code>dataMeanStd&lt;-select(dataMerged, id_subject, id, contains(&quot;mean&quot;), contains(&quot;std&quot;))</code></pre>
 </div>
 <div id="assingment-3-uses-descriptive-activity-names-to-name-the-activities-in-the-data-set" class="section level2">
@@ -489,6 +498,9 @@ names(dataMeanStd)&lt;-gsub(&quot;\\.t&quot;, &quot;Time&quot;, names(dataMeanSt
 </div>
 <div id="assingment-5-from-the-data-set-in-step-4-creates-a-second-independent-tidy-data-set-with-the-average-of-each-variable-for-each-activity-and-each-subject" class="section level2">
 <h2>Assingment 5: From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject</h2>
+<ul>
+<li>Writes a file named finalAverageData.txt with independent tidy data set with the average of each variable for each activity and each subject</li>
+</ul>
 <pre class="r"><code>dataMergedAverage&lt;-aggregate(. ~Subject + Activity, dataMeanStd, mean)
 dataMergedAverage&lt;-dataMergedAverage[order(dataMergedAverage$Subject,dataMergedAverage$Activity),]
 write.table(dataMergedAverage, &quot;./data/finalAverageData.txt&quot;, row.name=FALSE)</code></pre>
