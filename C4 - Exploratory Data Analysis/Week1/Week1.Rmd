@@ -1,0 +1,188 @@
+---
+title: "Week 1 - Notes"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+  html_notebook: default
+latex_engine: xelatex
+---
+
+
+# Data Load
+
+```{r global_options, include = FALSE}
+knitr::opts_chunk$set(message=FALSE, tidy.opts=list(width.cutoff=60)) 
+```
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(dplyr)
+```
+
+```{r warning=FALSE}
+avgpm25_gitraw <- "https://raw.githubusercontent.com"
+avgpm25_user <- "/jtleek/modules/master/04_ExploratoryAnalysis/exploratoryGraphs/data"
+avgpm25_filename <- "/avgpm25.csv"
+avgpm25 <- paste(avgpm25_gitraw, avgpm25_user, avgpm25_filename, sep ="")
+
+download.file(avgpm25,destfile="./data/avgpm25.csv")
+
+classes <- c("numeric", "character", "factor", "numeric", "numeric")
+
+pollution <- read.csv("./data/avgpm25.csv", colClasses = classes)
+head(pollution)
+summary(pollution$pm25)
+```
+
+
+# Histograms
+
+## Simple histogram, with:
+### Vertical line at national limit of 12.
+### Vertical line at median.
+
+```{r}
+hist(pollution$pm25, col = "green", breaks=200)
+abline(v = 12, lwd = 2)
+abline(v = median(pollution$pm25), col = "magenta", lwd = 4)
+```
+
+## Multiple
+
+```{r}
+par(mfrow = c(2, 1), mar = c(4, 4, 2, 1))
+hist(subset(pollution, region == "east")$pm25, col = "green") 
+hist(subset(pollution, region == "west")$pm25, col = "green")
+```
+
+# Bloxplots
+
+## Simple
+
+```{r}
+boxplot(pollution$pm25, col = "blue") 
+abline(h = 12)
+```
+
+## By region
+
+```{r}
+boxplot(pm25 ~ region, data = pollution, col = "red")
+```
+
+# Barplot
+
+```{r}
+barplot(table(pollution$region), col = "wheat", main = "Number of Counties in Each Region")
+```
+
+# Scatterplots
+
+## Simple
+
+```{r}
+with(pollution, plot(latitude, pm25)) 
+abline(h=12,lwd=2,lty=2)
+```
+
+## With color
+
+```{r}
+with(pollution, plot(latitude, pm25, col = region)) 
+abline(h=12,lwd=2,lty=2)
+```
+
+## Multiple
+
+```{r}
+par(mfrow = c(1, 2), mar = c(5, 4, 2, 1))
+with(subset(pollution, region == "west"), plot(latitude, pm25, main = "West")) 
+with(subset(pollution, region == "east"), plot(latitude, pm25, main = "East"))
+```
+
+# Lattice
+
+```{r}
+library(lattice)
+xyplot(pm25 ~ latitude | region, data = pollution)
+```
+
+# Building Plots
+
+## Base Plotting System
+
+```{r}
+library(datasets)
+data(cars)
+with(cars, plot(speed, dist))
+```
+
+## Lattice System
+
+```{r}
+library(lattice)
+state <- data.frame(state.x77, region = state.region) 
+xyplot(Life.Exp ~ Income | region, data = state, layout = c(4, 1))
+```
+
+## ggplot2
+
+```{r}
+library(ggplot2)
+data(mpg)
+qplot(displ, hwy, data = mpg)
+```
+
+# Base Plots
+
+## Base plot with annotation
+
+```{r eval=FALSE, include=FALSE}
+library(datasets)
+with(airquality, plot(Wind, Ozone, main = "Ozone and Wind in New York City", type ="n"))
+with(subset(airquality, Month == 5), points(Wind, Ozone, col = "blue")) with(subset(airquality, Month != 5), points(Wind, Ozone, col = "red")) legend("topright", pch = 1, col = c("blue", "red"), legend = c("May", "Other Months"))
+```
+
+## With regression line
+
+```{r}
+library(datasets)
+with(airquality, plot(Wind, Ozone, main = "Ozone and Wind in New York City", pch = 20))
+model <- lm(Ozone ~ Wind, airquality) 
+abline(model, lwd = 2)
+```
+
+
+## Multiple
+
+```{r eval=FALSE, include=FALSE}
+library(datasets)
+par(mfrow = c(1, 2)) with(airquality, {
+plot(Wind, Ozone, main = "Ozone and Wind")
+plot(Solar.R, Ozone, main = "Ozone and Solar Radiation") })
+```
+
+# Graphics Devices
+
+where to put the plots: window, PDF, JPEG, etc
+
+## PDF
+
+```{r}
+pdf(file = "myplot.pdf")
+with(faithful, plot(eruptions, waiting))
+title(main = "Old Faithful Geyser data")
+dev.off()
+```
+
+## PNG
+
+```{r}
+library(datasets)
+with(faithful, plot(eruptions, waiting)) 
+title(main = "Old Faithful Geyser data")
+dev.copy(png, file = "geyserplot.png") 
+dev.off()
+```
+
